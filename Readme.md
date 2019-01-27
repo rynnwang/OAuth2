@@ -14,7 +14,6 @@ OAuth2Client client = new OAuth2Client(new OAuth2ClientOptions
 {
 	ClientId = "my-client-id",
 	ClientSecret = "my-client-secret",
-	Scope = "my-scope",
 	// RedirectUri is the URI which OAUTH server would redirect to.
 	RedirectUri = "https://awesome-domain.com/my-awesome-oauth-callback/",
 	ProviderOptions = new OAuth2ProviderOptions
@@ -42,7 +41,10 @@ This will give you a URI you can just forward the user to. They will sign in and
 Still use the declared client instance.
 
 ```csharp
-var result = client.AuthenticateByCode(new OAuth2AuthenticationRequest { Token = "code from callback from provider" });
+var result = client.AuthenticateByCode(new OAuth2AuthenticationRequest 
+{ 
+	Token = "code from callback from provider" 
+});
 
 ```
 
