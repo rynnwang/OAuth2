@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>b3254045-1d76-4d82-8e44-872648498d75</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>Beyova.OAuth2</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Constants.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\OAuth2AuthenticateErrorMessage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\OAuth2AuthenticationResult.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\OAuth2AuthenticationRequest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\OAuth2ClientOptions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\OAuth2ProviderOptions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\OAuth2Request.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\OAuth2UserProfile.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\Specific\Microsoft\MicrosoftOAuth2RespondModes.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\Specific\Microsoft\MicrosoftOAuth2ClientOptions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\Specific\Microsoft\MicrosoftOAuth2ErrorMessage.cs" />
+  </ItemGroup>
+</Project>

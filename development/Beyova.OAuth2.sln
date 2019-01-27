@@ -1,0 +1,41 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.168
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Beyova.OAuth2.Client.Framework4.6.2", "Beyova.OAuth2.Client.Framework4.6.2\Beyova.OAuth2.Client.Framework4.6.2.csproj", "{6B57BC80-8C22-41FA-BA9A-0E755410F4A3}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Beyova.OAuth2", "Beyova.OAuth2\Beyova.OAuth2.shproj", "{B3254045-1D76-4D82-8E44-872648498D75}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Beyova.OAuth2.Client", "Beyova.OAuth2.Client\Beyova.OAuth2.Client.shproj", "{6673B5CA-4290-4FB1-B8F2-29FCD0097A62}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Beyova.OAuth2.TestSite", "Beyova.OAuth2.TestSite\Beyova.OAuth2.TestSite.csproj", "{C2A85430-8F31-4CDB-B152-FE7E1FA06B76}"
+EndProject
+Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		Beyova.OAuth2.Client\Beyova.OAuth2.Client.projitems*{6673b5ca-4290-4fb1-b8f2-29fcd0097a62}*SharedItemsImports = 13
+		Beyova.OAuth2.Client\Beyova.OAuth2.Client.projitems*{6b57bc80-8c22-41fa-ba9a-0e755410f4a3}*SharedItemsImports = 4
+		Beyova.OAuth2\Beyova.OAuth2.projitems*{6b57bc80-8c22-41fa-ba9a-0e755410f4a3}*SharedItemsImports = 4
+		Beyova.OAuth2\Beyova.OAuth2.projitems*{b3254045-1d76-4d82-8e44-872648498d75}*SharedItemsImports = 13
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6B57BC80-8C22-41FA-BA9A-0E755410F4A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B57BC80-8C22-41FA-BA9A-0E755410F4A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B57BC80-8C22-41FA-BA9A-0E755410F4A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B57BC80-8C22-41FA-BA9A-0E755410F4A3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C2A85430-8F31-4CDB-B152-FE7E1FA06B76}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2A85430-8F31-4CDB-B152-FE7E1FA06B76}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2A85430-8F31-4CDB-B152-FE7E1FA06B76}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2A85430-8F31-4CDB-B152-FE7E1FA06B76}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3E618ECC-C002-457D-BBF0-F4B73BC6863D}
+	EndGlobalSection
+EndGlobal
