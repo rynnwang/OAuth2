@@ -1,0 +1,1 @@
+D:\Github\OAuth2\development\Beyova.OAuth2.Client.Framework4.6.2\binnuget.exe pack "D:\Github\OAuth2\development\Beyova.OAuth2.Client.Framework4.6.2\binBeyova.OAuth2.Client.nuspec" -Version "0.2.0"

@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>Beyova.OAuth2.Client</id>
+    <version>$version$</version>
+    <title>Beyova OAuth2.0 Client</title>
+    <authors>Rynn.Wang</authors>
+    <owners>Rynn.Wang</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <projectUrl>https://github.com/rynnwang/OAuth2</projectUrl>
+    <description>A simple .NET OAUTH 2.0 client.</description>
+    <summary>A simple .NET OAUTH 2.0 client.</summary>
+    <copyright>© Beyova 2019. All Rights Reserved.</copyright>
+    <tags>DotNet OAUTH2</tags>
+    <dependencies>
+      <group targetFramework=".NETFramework4.6.2">
+        <dependency id="Beyova.Common" version="[4.7.4, 5.0.0)" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="Beyova.OAuth2.Client.dll" target="lib\net462\Beyova.OAuth2.Client.dll" />
+    <file src="Beyova.OAuth2.Client.xml" target="lib\net462\Beyova.OAuth2.Client.xml" />
+  </files>
+</package>
