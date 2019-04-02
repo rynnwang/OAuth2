@@ -1,4 +1,6 @@
-﻿namespace Beyova.OAuth2
+﻿using Newtonsoft.Json;
+
+namespace Beyova.OAuth2
 {
     /// <summary>
     /// </summary>
@@ -10,7 +12,7 @@
         /// <value>
         /// The error.
         /// </value>
-        [Newtonsoft.Json.JsonProperty(PropertyName = Constants.RFCKeys.Error)]
+        [JsonProperty(PropertyName = Constants.RFCKeys.Error)]
         public string Error { get; set; }
 
         /// <summary>
@@ -19,7 +21,7 @@
         /// <value>
         /// The error description.
         /// </value>
-        [Newtonsoft.Json.JsonProperty(PropertyName = Constants.RFCKeys.ErrorDescription)]
+        [JsonProperty(PropertyName = Constants.RFCKeys.ErrorDescription)]
         public string ErrorDescription { get; set; }
 
         /// <summary>
@@ -28,7 +30,7 @@
         /// <value>
         /// The error URI.
         /// </value>
-        [Newtonsoft.Json.JsonProperty(PropertyName = Constants.RFCKeys.ErrorUri)]
+        [JsonProperty(PropertyName = Constants.RFCKeys.ErrorUri)]
         public string ErrorUri { get; set; }
     }
 }

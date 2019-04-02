@@ -18,16 +18,6 @@ namespace Beyova.OAuth2
         }
 
         /// <summary>
-        /// Creates the authenticate URI.
-        /// </summary>
-        /// <param name="request">The request.</param>
-        /// <returns></returns>
-        protected override string CreateAuthenticateUri(OAuth2AuthenticationRequest request)
-        {
-            return string.Format(this._options.ProviderOptions.AccessTokenUri, this._options.TenantId);
-        }
-
-        /// <summary>
         /// Creates the redirect query string parameters.
         /// </summary>
         /// <param name="request">The request.</param>
@@ -35,7 +25,7 @@ namespace Beyova.OAuth2
         protected override Dictionary<string, string> CreateRedirectQueryStringParameters(OAuth2Request request)
         {
             var result = base.CreateRedirectQueryStringParameters(request);
-            result.AddIfNotNullOrEmpty("response_mode", this._options.RespondMode);
+            result.AddIfBothNotNullOrEmpty("response_mode", this._options.RespondMode);
             return result;
         }
 

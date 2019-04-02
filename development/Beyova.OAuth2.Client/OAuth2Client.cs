@@ -1,4 +1,4 @@
-﻿using Beyova.ExceptionSystem;
+﻿using Beyova.Diagnostic;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -77,8 +77,8 @@ namespace Beyova.OAuth2
                 {Constants.RFCKeys.ResponseType,   _options.ProviderOptions.AuthenticationByCodeResponseType.SafeToString(Constants.GrantTypes.AuthorizationCode)}
             };
 
-            result.AddIfNotNullOrEmpty(Constants.RFCKeys.Scope, request?.Scope);
-            result.AddIfNotNullOrEmpty(Constants.RFCKeys.State, request?.State);
+            result.AddIfBothNotNullOrEmpty(Constants.RFCKeys.Scope, request?.Scope);
+            result.AddIfBothNotNullOrEmpty(Constants.RFCKeys.State, request?.State);
 
             return result;
         }
@@ -141,7 +141,7 @@ namespace Beyova.OAuth2
         /// </summary>
         /// <param name="request">The request.</param>
         /// <returns></returns>
-        /// <exception cref="Beyova.ExceptionSystem.UnsupportedException">AuthenticationHttpMethod</exception>
+        /// <exception cref="Beyova.Diagnostic.UnsupportedException">AuthenticationHttpMethod</exception>
         public OAuth2AuthenticationResult AuthenticateByCode(OAuth2AuthenticationRequest request)
         {
             return Authenticate(request, CreateAuthenticateByCodeParameters);
@@ -202,8 +202,8 @@ namespace Beyova.OAuth2
                 {Constants.RFCKeys.GrantType, Constants.GrantTypes.AuthorizationCode}
             };
 
-            result.AddIfNotNullOrEmpty(Constants.RFCKeys.Scope, request?.Scope);
-            result.AddIfNotNullOrEmpty(Constants.RFCKeys.State, request?.State);
+            result.AddIfBothNotNullOrEmpty(Constants.RFCKeys.Scope, request?.Scope);
+            result.AddIfBothNotNullOrEmpty(Constants.RFCKeys.State, request?.State);
 
             return result;
         }

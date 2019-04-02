@@ -12,7 +12,7 @@ namespace Beyova.OAuth2.TestSite.Controllers
             ClientSecret = "ftrMZPQY566=?gtzgAY92(;",
             RedirectUri = "http://localhost:64963/oauth2/authorize/",
             TenantId = "common",
-            ProviderOptions = OAuth2ProviderFactory.MicrosoftAzureGlobalProviderOptionsV2,
+            ProviderOptions = OAuth2ProviderFactory.GetMicrosoftAzureGlobalProviderOptionsV2(),
             RespondMode = "query"
         });
 
