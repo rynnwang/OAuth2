@@ -10,7 +10,7 @@ $specPath = "Beyova.OAuth2.Client.nuspec"
 
 if(![string]::IsNullOrWhiteSpace($specPath) -and ![string]::IsNullOrWhiteSpace($version)){
 
-    $cmdText = [string]::Format("{0}\{1} pack `"{0}\{2}`" -Version `"{3}`"",
+    $cmdText = [string]::Format("cd /d {0}\n{1} pack `"{0}\{2}`" -Version `"{3}`"",
         #{0}
         $currentPath,
         #{1}
