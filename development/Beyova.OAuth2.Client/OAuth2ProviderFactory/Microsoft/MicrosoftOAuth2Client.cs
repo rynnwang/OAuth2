@@ -25,7 +25,7 @@ namespace Beyova.OAuth2
         protected override Dictionary<string, string> CreateRedirectQueryStringParameters(OAuth2Request request)
         {
             var result = base.CreateRedirectQueryStringParameters(request);
-            result.AddIfBothNotNullOrEmpty("response_mode", this._options.RespondMode);
+            result.AddIfBothNotNullOrEmpty("response_mode", _options.RespondMode);
             return result;
         }
 
@@ -36,7 +36,7 @@ namespace Beyova.OAuth2
         /// <returns></returns>
         protected override string CreateRedirectUri(OAuth2Request request)
         {
-            return string.Format(this._options.ProviderOptions.AuthenticationUri, this._options.TenantId);
+            return string.Format(_options.ProviderOptions.AuthenticationUri, _options.TenantId);
         }
 
         /// <summary>
@@ -53,6 +53,8 @@ namespace Beyova.OAuth2
                     Email = json.Value<string>("mail"),
                     Id = json.Value<string>("id"),
                     Name = json.Value<string>("displayName"),
+                    JobTitle = json.Value<string>("jobTitle"),
+                    UserPrincipalName = json.Value<string>("userPrincipalName"),
                     CellphoneNumber = json.Value<string>("mobilePhone")
                 };
             }

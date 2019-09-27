@@ -34,7 +34,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Beyova.Common, Version=4.0.0.0, Culture=neutral, PublicKeyToken=d55e8b6a979ee1b5, processorArchitecture=MSIL">
-      <HintPath>..\packages\Beyova.Common.4.10.0\lib\net462\Beyova.Common.dll</HintPath>
+      <HintPath>..\packages\Beyova.Common.4.10.2\lib\net462\Beyova.Common.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>

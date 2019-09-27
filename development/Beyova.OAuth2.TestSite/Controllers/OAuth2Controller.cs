@@ -6,6 +6,8 @@ namespace Beyova.OAuth2.TestSite.Controllers
     {
         private static Cache.MemoryCacheContainer<string, OAuth2AuthenticationResult> authenticationResultCache = new Cache.MemoryCacheContainer<string, OAuth2AuthenticationResult>(new Cache.MemoryCacheContainerOptions<string> { Capacity = 500, ExpirationInSecond = 3600 * 12 });
 
+        // Please NOTE:
+        // RedirectUri here needs to be absolute Uri and be exactly same as which is set in OAUTH regiestered side.
         private static MicrosoftOAuth2Client client = new MicrosoftOAuth2Client(new MicrosoftOAuth2ClientOptions
         {
             ClientId = "0aaaf25a-dd86-44c2-96fc-e0b8afa638dc",

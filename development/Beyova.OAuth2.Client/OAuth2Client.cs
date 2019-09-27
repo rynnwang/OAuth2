@@ -72,8 +72,8 @@ namespace Beyova.OAuth2
         protected virtual Dictionary<string, string> CreateRedirectQueryStringParameters(OAuth2Request request)
         {
             var result = new Dictionary<string, string> {
-                {Constants.RFCKeys.ClientId, this._options.ClientId},
-                {Constants.RFCKeys.RedirectUri, this._options.RedirectUri},
+                {Constants.RFCKeys.ClientId, _options.ClientId},
+                {Constants.RFCKeys.RedirectUri, _options.RedirectUri},
                 {Constants.RFCKeys.ResponseType,   _options.ProviderOptions.AuthenticationByCodeResponseType.SafeToString(Constants.GrantTypes.AuthorizationCode)}
             };
 
@@ -90,7 +90,7 @@ namespace Beyova.OAuth2
         /// <returns></returns>
         protected virtual string CreateRedirectUri(OAuth2Request request)
         {
-            return this._options.ProviderOptions.AuthenticationUri;
+            return _options.ProviderOptions.AuthenticationUri;
         }
 
         /// <summary>
@@ -100,7 +100,7 @@ namespace Beyova.OAuth2
         /// <returns></returns>
         protected virtual string CreateAuthenticateUri(OAuth2AuthenticationRequest request)
         {
-            return this._options.ProviderOptions.AccessTokenUri;
+            return _options.ProviderOptions.AccessTokenUri;
         }
 
         /// <summary>
@@ -195,9 +195,9 @@ namespace Beyova.OAuth2
         protected virtual Dictionary<string, string> CreateAuthenticateByCodeParameters(OAuth2AuthenticationRequest request)
         {
             var result = new Dictionary<string, string> {
-                {Constants.RFCKeys.ClientId, this._options.ClientId},
-                {Constants.RFCKeys.ClientSecret, this._options.ClientSecret},
-                {Constants.RFCKeys.RedirectUri, this._options.RedirectUri},
+                {Constants.RFCKeys.ClientId, _options.ClientId},
+                {Constants.RFCKeys.ClientSecret, _options.ClientSecret},
+                {Constants.RFCKeys.RedirectUri, _options.RedirectUri},
                 {Constants.RFCKeys.Code, request.Token},
                 {Constants.RFCKeys.GrantType, Constants.GrantTypes.AuthorizationCode}
             };
@@ -216,8 +216,8 @@ namespace Beyova.OAuth2
         protected virtual Dictionary<string, string> CreateAuthenticateByTokenParameters(OAuth2AuthenticationRequest request)
         {
             var result = new Dictionary<string, string> {
-                {Constants.RFCKeys.ClientId, this._options.ClientId},
-                {Constants.RFCKeys.ClientSecret, this._options.ClientSecret},
+                {Constants.RFCKeys.ClientId, _options.ClientId},
+                {Constants.RFCKeys.ClientSecret, _options.ClientSecret},
                 {Constants.RFCKeys.RefreshToken, request.Token},
                 {Constants.RFCKeys.GrantType, Constants.GrantTypes.RefreshToken}
             };
@@ -244,18 +244,18 @@ namespace Beyova.OAuth2
                 var uri = CreateAuthenticateUri(request);
                 HttpWebRequest httpReqeust = null;
 
-                if (this._options.ProviderOptions.AuthenticationHttpMethod.Equals(HttpConstants.HttpMethod.Post, StringComparison.OrdinalIgnoreCase))
+                if (_options.ProviderOptions.AuthenticationHttpMethod.Equals(HttpConstants.HttpMethod.Post, StringComparison.OrdinalIgnoreCase))
                 {
                     httpReqeust = uri.CreateHttpWebRequest(HttpConstants.HttpMethod.Post);
                     httpReqeust.FillData(parameters, Encoding.UTF8);
                 }
-                else if (this._options.ProviderOptions.AuthenticationHttpMethod.Equals(HttpConstants.HttpMethod.Get, StringComparison.OrdinalIgnoreCase))
+                else if (_options.ProviderOptions.AuthenticationHttpMethod.Equals(HttpConstants.HttpMethod.Get, StringComparison.OrdinalIgnoreCase))
                 {
                     httpReqeust = CombineRequest(uri, parameters).CreateHttpWebRequest();
                 }
                 else
                 {
-                    throw new UnsupportedException(nameof(this._options.ProviderOptions.AuthenticationHttpMethod), data: new { this._options.ProviderOptions.AuthenticationHttpMethod });
+                    throw new UnsupportedException(nameof(_options.ProviderOptions.AuthenticationHttpMethod), data: new { _options.ProviderOptions.AuthenticationHttpMethod });
                 }
 
                 var response = httpReqeust.ReadResponseAsText(Encoding.UTF8);
