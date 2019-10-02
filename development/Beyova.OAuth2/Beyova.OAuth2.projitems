@@ -11,6 +11,7 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Constants.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\OAuth2AuthenticateErrorMessage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\AuthenticationResult.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\OAuth2AuthenticationResult.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\OAuth2AuthenticationRequest.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\OAuth2Request.cs" />

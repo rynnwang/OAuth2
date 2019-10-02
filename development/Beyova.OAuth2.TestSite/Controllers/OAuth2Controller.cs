@@ -47,7 +47,13 @@ namespace Beyova.OAuth2.TestSite.Controllers
                 var result = authenticationResultCache.Get(code);
                 if (result == null)
                 {
-                    result = client.AuthenticateByCode(new OAuth2AuthenticationRequest { Token = code });
+                    var authenticationResult = client.AuthenticateByCode(new OAuth2AuthenticationRequest { Token = code });
+                    if (authenticationResult != null && authenticationResult.ErrorObject != null)
+                    {
+                        return Json(authenticationResult.ErrorObject);
+                    }
+
+                    result = authenticationResult.Result;
                     authenticationResultCache.Update(code, result);
                 }
 

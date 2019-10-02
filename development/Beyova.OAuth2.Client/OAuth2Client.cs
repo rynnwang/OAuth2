@@ -10,7 +10,7 @@ namespace Beyova.OAuth2
     /// <summary>
     ///
     /// </summary>
-    public class OAuth2Client : OAuth2Client<OAuth2ClientOptions, OAuth2Request>
+    public class OAuth2Client : OAuth2Client<OAuth2ClientOptions, OAuth2Request, OAuth2AuthenticateErrorMessage>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="OAuth2Client"/> class.
@@ -24,9 +24,10 @@ namespace Beyova.OAuth2
     /// <summary>
     ///
     /// </summary>
-    public abstract class OAuth2Client<TOption, TRequest>
+    public abstract class OAuth2Client<TOption, TRequest, TErrorObject>
         where TOption : OAuth2ClientOptions, new()
         where TRequest : OAuth2Request
+        where TErrorObject : OAuth2AuthenticateErrorMessage
     {
         /// <summary>
         /// The options
@@ -142,7 +143,7 @@ namespace Beyova.OAuth2
         /// <param name="request">The request.</param>
         /// <returns></returns>
         /// <exception cref="Beyova.Diagnostic.UnsupportedException">AuthenticationHttpMethod</exception>
-        public OAuth2AuthenticationResult AuthenticateByCode(OAuth2AuthenticationRequest request)
+        public AuthenticationResult<OAuth2AuthenticationResult, TErrorObject> AuthenticateByCode(OAuth2AuthenticationRequest request)
         {
             return Authenticate(request, CreateAuthenticateByCodeParameters);
         }
@@ -152,7 +153,7 @@ namespace Beyova.OAuth2
         /// </summary>
         /// <param name="request">The request.</param>
         /// <returns></returns>
-        public OAuth2AuthenticationResult AuthenticateByToken(OAuth2AuthenticationRequest request)
+        public AuthenticationResult<OAuth2AuthenticationResult, TErrorObject> AuthenticateByToken(OAuth2AuthenticationRequest request)
         {
             return Authenticate(request, CreateAuthenticateByTokenParameters);
         }
@@ -232,7 +233,7 @@ namespace Beyova.OAuth2
         /// <param name="parameterCreator">The parameter creator.</param>
         /// <returns></returns>
         /// <exception cref="UnsupportedException">AuthenticationHttpMethod</exception>
-        private OAuth2AuthenticationResult Authenticate(OAuth2AuthenticationRequest request, Func<OAuth2AuthenticationRequest, Dictionary<string, string>> parameterCreator)
+        private AuthenticationResult<OAuth2AuthenticationResult, TErrorObject> Authenticate(OAuth2AuthenticationRequest request, Func<OAuth2AuthenticationRequest, Dictionary<string, string>> parameterCreator)
         {
             try
             {
@@ -259,10 +260,23 @@ namespace Beyova.OAuth2
                 }
 
                 var response = httpReqeust.ReadResponseAsText(Encoding.UTF8);
-                return DeserializeResponse(response.Body);
+                return new AuthenticationResult<OAuth2AuthenticationResult, TErrorObject>
+                {
+                    Result = DeserializeResponse(response.Body)
+                };
             }
             catch (Exception ex)
             {
+                var errorObject = GetErrorObject(ex);
+
+                if (errorObject != null)
+                {
+                    return new AuthenticationResult<OAuth2AuthenticationResult, TErrorObject>
+                    {
+                        ErrorObject = errorObject
+                    };
+                }
+
                 throw ex.Handle(new { request });
             }
         }
@@ -293,6 +307,22 @@ namespace Beyova.OAuth2
             {
                 throw ex.Handle(new { responseString });
             }
+        }
+
+        /// <summary>
+        /// Gets the error object.
+        /// </summary>
+        /// <param name="exception">The exception.</param>
+        /// <returns></returns>
+        protected virtual TErrorObject GetErrorObject(Exception exception)
+        {
+            HttpOperationException httpException = exception as HttpOperationException;
+            if (httpException != null && httpException.ExceptionReference != null && !string.IsNullOrWhiteSpace(httpException.ExceptionReference.ResponseText))
+            {
+                return httpException.ExceptionReference.ResponseText.TryParseToJToken()?.ToObject<TErrorObject>();
+            }
+
+            return null;
         }
 
         /// <summary>
