@@ -15,6 +15,7 @@ OAuth2Client client = new OAuth2Client(new OAuth2ClientOptions
 	ClientId = "my-client-id",
 	ClientSecret = "my-client-secret",
 	// RedirectUri is the URI which OAUTH server would redirect to.
+	// It MUST be exactly same as which is configured in OAUTH server.
 	RedirectUri = "https://awesome-domain.com/my-awesome-oauth-callback/",
 	ProviderOptions = new OAuth2ProviderOptions
 	{
