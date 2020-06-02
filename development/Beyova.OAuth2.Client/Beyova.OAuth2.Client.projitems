@@ -11,6 +11,7 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)OAuth2Client.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)OAuth2Extension.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)OAuth2ProviderFactory\Github\GithubOAuth2Client.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)OAuth2ProviderFactory\Microsoft\MicrosoftOAuth2Client.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)OAuth2ProviderFactory\OAuth2ProviderFactory.cs" />
   </ItemGroup>

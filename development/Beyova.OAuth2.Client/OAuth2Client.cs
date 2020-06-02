@@ -45,6 +45,44 @@ namespace Beyova.OAuth2
         }
 
         /// <summary>
+        /// Converts the error object.
+        /// </summary>
+        /// <param name="body">The body.</param>
+        /// <returns></returns>
+        protected virtual TErrorObject ConvertErrorObject(string body)
+        {
+            return body.TryParseToJToken()?.ToObject<TErrorObject>();
+        }
+
+        /// <summary>
+        /// Converts the o auth2 authentication result.
+        /// </summary>
+        /// <param name="body">The body.</param>
+        /// <returns></returns>
+        protected virtual OAuth2AuthenticationResult ConvertOAuth2AuthenticationResult(string body)
+        {
+            try
+            {
+                body.CheckEmptyString(nameof(body));
+
+                var json = JObject.Parse(body);
+
+                if (json != null)
+                {
+                    OAuth2AuthenticationResult result = json.ToObject<OAuth2AuthenticationResult>();
+                    result.Expires = DateTime.UtcNow.AddSeconds(json.Value<int>(Constants.RFCKeys.ExpiresIn));
+                    return result;
+                }
+
+                return null;
+            }
+            catch (Exception ex)
+            {
+                throw ex.Handle(new { body });
+            }
+        }
+
+        /// <summary>
         /// Validates the options.
         /// </summary>
         /// <param name="options">The options.</param>
@@ -164,7 +202,7 @@ namespace Beyova.OAuth2
         /// <param name="authenticationResult">The authentication result.</param>
         /// <returns></returns>
         /// <exception cref="UnsupportedException">OAuth2UserProfile</exception>
-        public OAuth2UserProfile GetUserProfile(OAuth2AuthenticationResult authenticationResult)
+        public virtual OAuth2UserProfile GetUserProfile(OAuth2AuthenticationResult authenticationResult)
         {
             try
             {
@@ -175,10 +213,10 @@ namespace Beyova.OAuth2
                     throw new UnsupportedException(nameof(OAuth2UserProfile));
                 }
 
-                var httpReqeust = _options.ProviderOptions.UserProfileUri.CreateHttpWebRequest();
-                httpReqeust.FillAuthentication(authenticationResult);
+                var httpRequest = _options.ProviderOptions.UserProfileUri.CreateHttpWebRequest();
+                FillAuthentication(httpRequest, authenticationResult);
 
-                return DeserializeOAuth2UserProfile(httpReqeust.ReadResponseAsObject<JToken>().Body);
+                return DeserializeOAuth2UserProfile(httpRequest.ReadResponseAsObject<JToken>().Body);
             }
             catch (Exception ex)
             {
@@ -187,6 +225,19 @@ namespace Beyova.OAuth2
         }
 
         #endregion Public method
+
+        /// <summary>
+        /// Fills the authentication.
+        /// </summary>
+        /// <param name="httpRequest">The HTTP request.</param>
+        /// <param name="oauthResult">The oauth result.</param>
+        protected virtual void FillAuthentication(HttpWebRequest httpRequest, OAuth2AuthenticationResult oauthResult)
+        {
+            if (httpRequest != null && oauthResult != null && !string.IsNullOrWhiteSpace(oauthResult.AccessToken))
+            {
+                httpRequest.Headers.Set(HttpRequestHeader.Authorization, string.Format("{0} {1}", oauthResult.TokenType, oauthResult.AccessToken));
+            }
+        }
 
         /// <summary>
         /// Creates the authenticate by code parameters.
@@ -235,6 +286,7 @@ namespace Beyova.OAuth2
         /// <exception cref="UnsupportedException">AuthenticationHttpMethod</exception>
         private AuthenticationResult<OAuth2AuthenticationResult, TErrorObject> Authenticate(OAuth2AuthenticationRequest request, Func<OAuth2AuthenticationRequest, Dictionary<string, string>> parameterCreator)
         {
+            TErrorObject errorObject = default(TErrorObject);
             try
             {
                 parameterCreator.CheckNullObject(nameof(parameterCreator));
@@ -260,53 +312,31 @@ namespace Beyova.OAuth2
                 }
 
                 var response = httpReqeust.ReadResponseAsText(Encoding.UTF8);
-                return new AuthenticationResult<OAuth2AuthenticationResult, TErrorObject>
-                {
-                    Result = DeserializeResponse(response.Body)
-                };
-            }
-            catch (Exception ex)
-            {
-                var errorObject = GetErrorObject(ex);
 
-                if (errorObject != null)
+                // Some OAUTH provider would return 200 even if error occurred.
+                errorObject = ConvertErrorObject(response.Body);
+                if (errorObject == null)
                 {
                     return new AuthenticationResult<OAuth2AuthenticationResult, TErrorObject>
                     {
-                        ErrorObject = errorObject
+                        Result = ConvertOAuth2AuthenticationResult(response.Body)
                     };
                 }
-
-                throw ex.Handle(new { request });
-            }
-        }
-
-        /// <summary>
-        /// Deserializes the response.
-        /// </summary>
-        /// <param name="responseString">The response string.</param>
-        /// <returns></returns>
-        private static OAuth2AuthenticationResult DeserializeResponse(string responseString)
-        {
-            try
-            {
-                responseString.CheckEmptyString(nameof(responseString));
-
-                var json = JObject.Parse(responseString);
-
-                if (json != null)
-                {
-                    OAuth2AuthenticationResult result = json.ToObject<OAuth2AuthenticationResult>();
-                    result.Expires = DateTime.UtcNow.AddSeconds(json.Value<int>(Constants.RFCKeys.ExpiresIn));
-                    return result;
-                }
-
-                return null;
             }
             catch (Exception ex)
             {
-                throw ex.Handle(new { responseString });
+                errorObject = GetErrorObject(ex);
+
+                if (errorObject == null)
+                {
+                    throw ex.Handle(new { request });
+                }
             }
+
+            return new AuthenticationResult<OAuth2AuthenticationResult, TErrorObject>
+            {
+                ErrorObject = errorObject
+            };
         }
 
         /// <summary>
@@ -319,7 +349,7 @@ namespace Beyova.OAuth2
             HttpOperationException httpException = exception as HttpOperationException;
             if (httpException != null && httpException.ExceptionReference != null && !string.IsNullOrWhiteSpace(httpException.ExceptionReference.ResponseText))
             {
-                return httpException.ExceptionReference.ResponseText.TryParseToJToken()?.ToObject<TErrorObject>();
+                return ConvertErrorObject(httpException.ExceptionReference.ResponseText);
             }
 
             return null;

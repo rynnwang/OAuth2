@@ -66,6 +66,22 @@
         }
 
         /// <summary>
+        /// Gets the github provider options.
+        /// </summary>
+        /// <returns></returns>
+        public static OAuth2ProviderOptions GetGithubProviderOptions()
+        {
+            return new OAuth2ProviderOptions
+            {
+                AuthenticationUri = "https://github.com/login/oauth/authorize",
+                AccessTokenUri = "https://github.com/login/oauth/access_token",
+                AuthenticationHttpMethod = HttpConstants.HttpMethod.Post,
+                UserProfileUri = "https://api.github.com/user",
+                AuthenticationByCodeResponseType = Constants.GrantTypes.Code
+            };
+        }
+
+        /// <summary>
         /// Gets the google provider options.
         /// </summary>
         /// <value>

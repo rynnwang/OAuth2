@@ -16,6 +16,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Model\OAuth2AuthenticationRequest.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\OAuth2Request.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\OAuth2UserProfile.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\Specific\Github\GithubOAuth2ClientOptions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\Specific\Github\GithubOAuth2ErrorMessage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Specific\Microsoft\MicrosoftOAuth2RespondModes.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Specific\Microsoft\MicrosoftOAuth2ClientOptions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Specific\Microsoft\MicrosoftOAuth2ErrorMessage.cs" />
