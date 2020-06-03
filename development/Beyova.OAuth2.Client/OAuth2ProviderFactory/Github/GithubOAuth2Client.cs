@@ -106,12 +106,11 @@ namespace Beyova.OAuth2
             {
                 return new OAuth2UserProfile
                 {
-                    Email = json.Value<string>("mail"),
+                    Email = json.Value<string>("email"),
                     Id = json.Value<string>("id"),
-                    Name = json.Value<string>("displayName"),
-                    JobTitle = json.Value<string>("jobTitle"),
-                    UserPrincipalName = json.Value<string>("userPrincipalName"),
-                    CellphoneNumber = json.Value<string>("mobilePhone")
+                    Name = json.Value<string>("name"),
+                    UserPrincipalName = json.Value<string>("login"),
+                    AvatarUrl = json.Value<string>("avatar_url")
                 };
             }
 

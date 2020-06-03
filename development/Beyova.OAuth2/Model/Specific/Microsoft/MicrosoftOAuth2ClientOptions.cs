@@ -1,4 +1,6 @@
-﻿namespace Beyova.OAuth2
+﻿using Newtonsoft.Json;
+
+namespace Beyova.OAuth2
 {
     /// <summary>
     /// See: https://docs.microsoft.com/en-us/azure/active-directory/develop/v1-protocols-oauth-code
@@ -11,6 +13,7 @@
         /// <value>
         /// The tenant identifier.
         /// </value>
+        [JsonProperty(PropertyName = "tenantId")] 
         public string TenantId { get; set; }
 
         /// <summary>
@@ -19,6 +22,7 @@
         /// <value>
         /// The respond mode.
         /// </value>
+        [JsonProperty(PropertyName = "respondMode")] 
         public string RespondMode { get; set; }
 
         /// <summary>
@@ -27,6 +31,7 @@
         /// <value>
         /// The scope.
         /// </value>
+        [JsonProperty(PropertyName = "scope")] 
         public string Scope { get; set; }
 
         /// <summary>

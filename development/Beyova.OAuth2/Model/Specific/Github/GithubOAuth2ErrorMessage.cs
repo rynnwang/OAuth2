@@ -8,7 +8,7 @@ namespace Beyova.OAuth2
     public class GithubOAuth2ErrorMessage : OAuth2AuthenticateErrorMessage
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="MicrosoftOAuth2ErrorMessage"/> class.
+        /// Initializes a new instance of the <see cref="GithubOAuth2ErrorMessage"/> class.
         /// </summary>
         public GithubOAuth2ErrorMessage() : base()
         {

@@ -60,5 +60,14 @@ namespace Beyova.OAuth2
         /// </value>
         [JsonProperty(PropertyName = "cellphoneNumber")]
         public CellphoneNumber CellphoneNumber { get; set; }
+
+        /// <summary>
+        /// Gets or sets the avatar URL.
+        /// </summary>
+        /// <value>
+        /// The avatar URL.
+        /// </value>
+        [JsonProperty(PropertyName = "avatarUrl")]
+        public string AvatarUrl { get; set; }
     }
 }

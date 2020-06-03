@@ -1,4 +1,6 @@
-﻿namespace Beyova.OAuth2
+﻿using Newtonsoft.Json;
+
+namespace Beyova.OAuth2
 {
     /// <summary>
     /// </summary>
@@ -10,6 +12,7 @@
         /// <value>
         /// The scope.
         /// </value>
+        [JsonProperty(PropertyName = "scope")]
         public string Scope { get; set; }
 
         /// <summary>
@@ -18,6 +21,7 @@
         /// <value>
         /// The login.
         /// </value>
+        [JsonProperty(PropertyName = "login")]
         public string Login { get; set; }
 
         /// <summary>
@@ -26,6 +30,7 @@
         /// <value>
         /// The state.
         /// </value>
+        [JsonProperty(PropertyName = "state")] 
         public string State { get; set; }
 
         /// <summary>
@@ -34,6 +39,7 @@
         /// <value>
         ///   <c>true</c> if [allow sign up]; otherwise, <c>false</c>.
         /// </value>
+        [JsonProperty(PropertyName = "allowSignUp")] 
         public bool AllowSignUp { get; set; }
 
         /// <summary>
@@ -42,6 +48,7 @@
         /// <value>
         /// The name of the application.
         /// </value>
+        [JsonProperty(PropertyName = "appName")] 
         public string AppName { get; set; }
 
         /// <summary>
