@@ -24,7 +24,7 @@ namespace Beyova.OAuth2
     /// <summary>
     ///
     /// </summary>
-    public abstract class OAuth2Client<TOption, TRequest, TErrorObject>
+    public abstract class OAuth2Client<TOption, TRequest, TErrorObject> : IOAuth2Client
         where TOption : OAuth2ClientOptions, new()
         where TRequest : OAuth2Request
         where TErrorObject : OAuth2AuthenticateErrorMessage
@@ -181,7 +181,7 @@ namespace Beyova.OAuth2
         /// <param name="request">The request.</param>
         /// <returns></returns>
         /// <exception cref="Beyova.Diagnostic.UnsupportedException">AuthenticationHttpMethod</exception>
-        public AuthenticationResult<OAuth2AuthenticationResult, TErrorObject> AuthenticateByCode(OAuth2AuthenticationRequest request)
+        public AuthenticationResult AuthenticateByCode(OAuth2AuthenticationRequest request)
         {
             return Authenticate(request, CreateAuthenticateByCodeParameters);
         }
@@ -191,7 +191,7 @@ namespace Beyova.OAuth2
         /// </summary>
         /// <param name="request">The request.</param>
         /// <returns></returns>
-        public AuthenticationResult<OAuth2AuthenticationResult, TErrorObject> AuthenticateByToken(OAuth2AuthenticationRequest request)
+        public AuthenticationResult AuthenticateByToken(OAuth2AuthenticationRequest request)
         {
             return Authenticate(request, CreateAuthenticateByTokenParameters);
         }
@@ -284,7 +284,7 @@ namespace Beyova.OAuth2
         /// <param name="parameterCreator">The parameter creator.</param>
         /// <returns></returns>
         /// <exception cref="UnsupportedException">AuthenticationHttpMethod</exception>
-        private AuthenticationResult<OAuth2AuthenticationResult, TErrorObject> Authenticate(OAuth2AuthenticationRequest request, Func<OAuth2AuthenticationRequest, Dictionary<string, string>> parameterCreator)
+        private AuthenticationResult Authenticate(OAuth2AuthenticationRequest request, Func<OAuth2AuthenticationRequest, Dictionary<string, string>> parameterCreator)
         {
             TErrorObject errorObject = default(TErrorObject);
             try
@@ -317,7 +317,7 @@ namespace Beyova.OAuth2
                 errorObject = ConvertErrorObject(response.Body);
                 if (errorObject == null)
                 {
-                    return new AuthenticationResult<OAuth2AuthenticationResult, TErrorObject>
+                    return new AuthenticationResult
                     {
                         Result = ConvertOAuth2AuthenticationResult(response.Body)
                     };
@@ -333,7 +333,7 @@ namespace Beyova.OAuth2
                 }
             }
 
-            return new AuthenticationResult<OAuth2AuthenticationResult, TErrorObject>
+            return new AuthenticationResult
             {
                 ErrorObject = errorObject
             };

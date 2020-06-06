@@ -9,6 +9,7 @@
     <Import_RootNamespace>Beyova.OAuth2.Client</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)IOAuth2Client.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)OAuth2Client.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)OAuth2ProviderFactory\Github\GithubOAuth2Client.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)OAuth2ProviderFactory\Microsoft\MicrosoftOAuth2Client.cs" />
