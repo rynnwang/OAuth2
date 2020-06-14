@@ -52,6 +52,13 @@ namespace Beyova.OAuth2
         /// <exception cref="UnsupportedException">OAuth2UserProfile</exception>
         OAuth2UserProfile GetUserProfile(OAuth2AuthenticationResult authenticationResult);
 
+        /// <summary>
+        /// Gets the user profile.
+        /// </summary>
+        /// <param name="accessToken">The access token.</param>
+        /// <returns></returns>
+        OAuth2UserProfile GetUserProfile(string accessToken);
+
         #endregion Public method
     }
 }

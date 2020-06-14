@@ -74,9 +74,20 @@ namespace Beyova.OAuth2
         /// <param name="oauthResult">The oauth result.</param>
         protected override void FillAuthentication(HttpWebRequest httpRequest, OAuth2AuthenticationResult oauthResult)
         {
-            if (httpRequest != null && oauthResult != null && !string.IsNullOrWhiteSpace(oauthResult.AccessToken))
+            FillAuthentication(httpRequest, oauthResult.AccessToken, oauthResult.TokenType);
+        }
+
+        /// <summary>
+        /// Fills the authentication.
+        /// </summary>
+        /// <param name="httpRequest">The HTTP request.</param>
+        /// <param name="accessToken">The access token.</param>
+        /// <param name="tokenType">Type of the token.</param>
+        protected override void FillAuthentication(HttpWebRequest httpRequest, string accessToken, string tokenType = null)
+        {
+            if (httpRequest != null && !string.IsNullOrWhiteSpace(accessToken))
             {
-                httpRequest.Headers.Set(HttpRequestHeader.Authorization, string.Format("{0} {1}", "token", oauthResult.AccessToken));
+                httpRequest.Headers.Set(HttpRequestHeader.Authorization, string.Format("token {0}", accessToken));
                 httpRequest.UserAgent = this._options.AppName;
             }
         }

@@ -232,6 +232,34 @@ namespace Beyova.OAuth2
             }
         }
 
+        /// <summary>
+        /// Gets the user profile.
+        /// </summary>
+        /// <param name="accessToken">The access token.</param>
+        /// <returns></returns>
+        /// <exception cref="UnsupportedException">OAuth2UserProfile</exception>
+        public virtual OAuth2UserProfile GetUserProfile(string accessToken)
+        {
+            try
+            {
+                accessToken.CheckEmptyString(nameof(accessToken));
+
+                if (string.IsNullOrWhiteSpace(_options.ProviderOptions.UserProfileUri))
+                {
+                    throw new UnsupportedException(nameof(OAuth2UserProfile));
+                }
+
+                var httpRequest = _options.ProviderOptions.UserProfileUri.CreateHttpWebRequest();
+                FillAuthentication(httpRequest, accessToken);
+
+                return DeserializeOAuth2UserProfile(httpRequest.ReadResponseAsObject<JToken>().Body);
+            }
+            catch (Exception ex)
+            {
+                throw ex.Handle(new { accessToken });
+            }
+        }
+
         #endregion Public method
 
         /// <summary>
@@ -241,9 +269,20 @@ namespace Beyova.OAuth2
         /// <param name="oauthResult">The oauth result.</param>
         protected virtual void FillAuthentication(HttpWebRequest httpRequest, OAuth2AuthenticationResult oauthResult)
         {
-            if (httpRequest != null && oauthResult != null && !string.IsNullOrWhiteSpace(oauthResult.AccessToken))
+            FillAuthentication(httpRequest, oauthResult.AccessToken, oauthResult.TokenType);
+        }
+
+        /// <summary>
+        /// Fills the authentication.
+        /// </summary>
+        /// <param name="httpRequest">The HTTP request.</param>
+        /// <param name="accessToken">The access token.</param>
+        /// <param name="tokenType">Type of the token.</param>
+        protected virtual void FillAuthentication(HttpWebRequest httpRequest, string accessToken, string tokenType = null)
+        {
+            if (httpRequest != null && !string.IsNullOrWhiteSpace(accessToken))
             {
-                httpRequest.Headers.Set(HttpRequestHeader.Authorization, string.Format("{0} {1}", oauthResult.TokenType, oauthResult.AccessToken));
+                httpRequest.Headers.Set(HttpRequestHeader.Authorization, string.Format("{0} {1}", tokenType.SafeToString("Bearer"), accessToken));
             }
         }
 
