@@ -10,7 +10,7 @@ namespace Beyova.OAuth2
     /// <summary>
     ///
     /// </summary>
-    public class OAuth2Client : OAuth2Client<OAuth2ClientOptions, OAuth2Request, OAuth2AuthenticateErrorMessage>
+    public abstract class OAuth2Client : OAuth2Client<OAuth2ClientOptions, OAuth2Request, OAuth2AuthenticateErrorMessage>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="OAuth2Client"/> class.
@@ -33,6 +33,14 @@ namespace Beyova.OAuth2
         /// The options
         /// </summary>
         protected TOption _options;
+
+        /// <summary>
+        /// Gets or sets the domain.
+        /// </summary>
+        /// <value>
+        /// The domain.
+        /// </value>
+        public abstract string Domain { get; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="OAuth2Client"/> class.

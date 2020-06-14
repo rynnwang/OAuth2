@@ -12,6 +12,14 @@ namespace Beyova.OAuth2
     /// </summary>
     public interface IOAuth2Client
     {
+        /// <summary>
+        /// Gets or sets the domain.
+        /// </summary>
+        /// <value>
+        /// The domain.
+        /// </value>
+        string Domain { get; }
+
         #region Public method
 
         /// <summary>

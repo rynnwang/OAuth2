@@ -9,7 +9,15 @@ namespace Beyova.OAuth2
     /// https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-graph-api
     /// </summary>
     public class MicrosoftOAuth2Client : OAuth2Client<MicrosoftOAuth2ClientOptions, OAuth2Request, MicrosoftOAuth2ErrorMessage>
-    {        
+    {
+        /// <summary>
+        /// Gets the domain.
+        /// </summary>
+        /// <value>
+        /// The domain.
+        /// </value>
+        public override string Domain { get { return "microsoftonline.com"; } }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="OAuth2Client" /> class.
         /// </summary>

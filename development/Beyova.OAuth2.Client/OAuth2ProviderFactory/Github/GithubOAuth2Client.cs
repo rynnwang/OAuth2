@@ -13,6 +13,14 @@ namespace Beyova.OAuth2
     public class GithubOAuth2Client : OAuth2Client<GithubOAuth2ClientOptions, OAuth2Request, GithubOAuth2ErrorMessage>
     {
         /// <summary>
+        /// Gets the domain.
+        /// </summary>
+        /// <value>
+        /// The domain.
+        /// </value>
+        public override string Domain { get { return "github.com"; } }
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="OAuth2Client" /> class.
         /// </summary>
         /// <param name="options">The options.</param>
