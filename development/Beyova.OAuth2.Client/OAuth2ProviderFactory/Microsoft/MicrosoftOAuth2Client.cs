@@ -27,6 +27,15 @@ namespace Beyova.OAuth2
         }
 
         /// <summary>
+        /// Gets the default options.
+        /// </summary>
+        /// <returns></returns>
+        protected override OAuth2ProviderOptions GetDefaultOptions()
+        {
+            return OAuth2ProviderFactory.GetMicrosoftAzureGlobalProviderOptionsV2();
+        }
+
+        /// <summary>
         /// Creates the redirect query string parameters.
         /// </summary>
         /// <param name="request">The request.</param>

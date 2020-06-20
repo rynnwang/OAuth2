@@ -48,9 +48,19 @@ namespace Beyova.OAuth2
         /// <param name="options">The options.</param>
         public OAuth2Client(TOption options)
         {
+            if (options != null && options.ProviderOptions == null)
+            {
+                options.ProviderOptions = GetDefaultOptions();
+            }
             ValidateOptions(options);
             _options = options;
         }
+
+        /// <summary>
+        /// Gets the default options.
+        /// </summary>
+        /// <returns></returns>
+        protected abstract OAuth2ProviderOptions GetDefaultOptions();
 
         /// <summary>
         /// Converts the error object.

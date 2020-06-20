@@ -44,6 +44,15 @@ namespace Beyova.OAuth2
         }
 
         /// <summary>
+        /// Gets the default options.
+        /// </summary>
+        /// <returns></returns>
+        protected override OAuth2ProviderOptions GetDefaultOptions()
+        {
+            return OAuth2ProviderFactory.GetGithubProviderOptions();
+        }
+
+        /// <summary>
         /// Converts the o auth2 authentication result.
         /// </summary>
         /// <param name="body">The body.</param>
