@@ -13,8 +13,8 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyCompany(BeyovaPropertyConstants.Company)]
 [assembly: AssemblyCopyright(BeyovaPropertyConstants.Copyright)]
 [assembly: AssemblyTrademark(BeyovaPropertyConstants.AssemblyTrademark)]
-[assembly: BeyovaComponent("Beyova.OAuth2.Client", "0.6.1")]
-[assembly: AssemblyInformationalVersion("0.6.1")]
+[assembly: BeyovaComponent("Beyova.OAuth2.Client", "0.6.2")]
+[assembly: AssemblyInformationalVersion("0.6.2")]
 
 // Setting ComVisible to false makes the types in this assembly not visible
 // to COM components.  If you need to access a type in this assembly from

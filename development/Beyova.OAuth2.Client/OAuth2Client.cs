@@ -362,6 +362,14 @@ namespace Beyova.OAuth2
 
                 // Some OAUTH provider would return 200 even if error occurred.
                 errorObject = ConvertErrorObject(response.Body);
+                if (errorObject != null
+                     && string.IsNullOrWhiteSpace(errorObject.Error)
+                     && string.IsNullOrWhiteSpace(errorObject.ErrorDescription)
+                     && string.IsNullOrWhiteSpace(errorObject.ErrorUri))
+                {
+                    errorObject = null;
+                }
+
                 if (errorObject == null)
                 {
                     return new AuthenticationResult
