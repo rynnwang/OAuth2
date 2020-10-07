@@ -30,7 +30,7 @@ namespace Beyova.OAuth2
         /// <value>
         /// The state.
         /// </value>
-        [JsonProperty(PropertyName = "state")] 
+        [JsonProperty(PropertyName = "state")]
         public string State { get; set; }
 
         /// <summary>
@@ -39,7 +39,7 @@ namespace Beyova.OAuth2
         /// <value>
         ///   <c>true</c> if [allow sign up]; otherwise, <c>false</c>.
         /// </value>
-        [JsonProperty(PropertyName = "allowSignUp")] 
+        [JsonProperty(PropertyName = "allowSignUp")]
         public bool AllowSignUp { get; set; }
 
         /// <summary>
@@ -48,7 +48,7 @@ namespace Beyova.OAuth2
         /// <value>
         /// The name of the application.
         /// </value>
-        [JsonProperty(PropertyName = "appName")] 
+        [JsonProperty(PropertyName = "appName")]
         public string AppName { get; set; }
 
         /// <summary>

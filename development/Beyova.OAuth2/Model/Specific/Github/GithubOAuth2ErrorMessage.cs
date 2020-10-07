@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Beyova.OAuth2
+﻿namespace Beyova.OAuth2
 {
     /// <summary>
     ///

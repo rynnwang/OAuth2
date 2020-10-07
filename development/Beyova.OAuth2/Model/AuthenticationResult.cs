@@ -1,10 +1,9 @@
 ﻿using Newtonsoft.Json;
-using System;
 
 namespace Beyova.OAuth2
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public class AuthenticationResult : AuthenticationResult<OAuth2AuthenticationResult, OAuth2AuthenticateErrorMessage>
     {

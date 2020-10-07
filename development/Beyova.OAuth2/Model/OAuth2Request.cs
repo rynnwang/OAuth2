@@ -1,4 +1,6 @@
-﻿namespace Beyova.OAuth2
+﻿using Newtonsoft.Json;
+
+namespace Beyova.OAuth2
 {
     /// <summary>
     ///
@@ -11,6 +13,7 @@
         /// <value>
         /// The scope.
         /// </value>
+        [JsonProperty(PropertyName = Constants.RFCKeys.Scope)]
         public string Scope { get; set; }
 
         /// <summary>
@@ -19,6 +22,7 @@
         /// <value>
         /// The state.
         /// </value>
+        [JsonProperty(PropertyName = Constants.RFCKeys.State)]
         public string State { get; set; }
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace Beyova.OAuth2
+﻿using Newtonsoft.Json;
+
+namespace Beyova.OAuth2
 {
     /// <summary>
     ///
@@ -11,6 +13,7 @@
         /// <value>
         /// The token.
         /// </value>
+        [JsonProperty(PropertyName = "token")]
         public string Token { get; set; }
     }
 }

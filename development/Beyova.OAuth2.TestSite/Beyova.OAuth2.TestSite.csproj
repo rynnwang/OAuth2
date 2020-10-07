@@ -48,7 +48,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Beyova.Common, Version=4.0.0.0, Culture=neutral, PublicKeyToken=d55e8b6a979ee1b5, processorArchitecture=MSIL">
-      <HintPath>..\packages\Beyova.Common.4.13.9\lib\net462\Beyova.Common.dll</HintPath>
+      <HintPath>..\packages\Beyova.Common.4.14.0\lib\net462\Beyova.Common.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AspNet.TelemetryCorrelation, Version=1.0.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.TelemetryCorrelation.1.0.7\lib\net45\Microsoft.AspNet.TelemetryCorrelation.dll</HintPath>

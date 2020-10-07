@@ -13,7 +13,7 @@ namespace Beyova.OAuth2
         /// <value>
         /// The tenant identifier.
         /// </value>
-        [JsonProperty(PropertyName = "tenantId")] 
+        [JsonProperty(PropertyName = "tenantId")]
         public string TenantId { get; set; }
 
         /// <summary>
@@ -22,7 +22,7 @@ namespace Beyova.OAuth2
         /// <value>
         /// The respond mode.
         /// </value>
-        [JsonProperty(PropertyName = "respondMode")] 
+        [JsonProperty(PropertyName = "respondMode")]
         public string RespondMode { get; set; }
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Beyova.OAuth2
         /// <value>
         /// The scope.
         /// </value>
-        [JsonProperty(PropertyName = "scope")] 
+        [JsonProperty(PropertyName = "scope")]
         public string Scope { get; set; }
 
         /// <summary>
